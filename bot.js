@@ -30,7 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Pong!'
+                    message: '@' + user + userID
                 });
             break;
             case 'gw':
@@ -39,7 +39,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'giggle wobble'
                 });
             break;
-            
+            case 'obeyme':
+                    logger.info(user + ' used obeyme');
+                    // send message to chat
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'fine...grrr ' + user,
+                    });
+                    break;
+            case 'koala':
+                bot.sendMessage({
+                    to: channelID,
+                    message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
+                })
+                
          }
      }
 });
