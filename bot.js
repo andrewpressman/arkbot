@@ -1,6 +1,6 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./auth.json');
+var auth = require('C:/Users/spyan/Documents/Discord Bot/auth.json');
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -30,13 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
-                    message: '@' + user + userID
-                });
-            break;
-            case 'gw':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'giggle wobble'
+                    message: 'pong'
                 });
             break;
             case 'obeyme':
@@ -51,8 +45,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 bot.sendMessage({
                     to: channelID,
                     message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
-                })
-                
+                });
+            break;
+            case 'stuff':
+                bot.sendMessage({
+                    to: channelID,
+                    message: 'ok'
+                });
+                bot.setPresence({
+                 idle_since:1   
+                });                
+            break;                
          }
      }
-});
+})
