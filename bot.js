@@ -47,14 +47,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
                 });
             break;
-            case 'stuff':
+            case 'NewComm':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'ok'
-                });
-                bot.setPresence({
-                 idle_since:1   
-                });                
+                    message: 'new'
+                });       
             break;                
          }
      }
