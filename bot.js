@@ -47,11 +47,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
                 });
             break;
-            case 'NewComm':
+            case 'help':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'new'
-                });       
+                    message: 'here are all the current available commands: ' + 
+                    "\n !ping: responds Pong!" +
+                    "\n !obeyme: the bot will obey" +
+                    "\n !koala: give a picture of a koala" +
+                    "\n !help: lists all commmands"
+                }); 
+                      
             break;                
          }
      }
