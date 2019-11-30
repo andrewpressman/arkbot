@@ -20,6 +20,7 @@ bot.on('ready', function (evt) {
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
+    
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
@@ -33,6 +34,30 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'pong'
                 });
             break;
+            case 'echo':
+                    var echo;
+                    if(args.length > 1)
+                    {
+                        echo = args[0];
+                        for(i = 1; i < args.length; i++)
+                        {
+                            echo = echo + " " + args[i];
+                        }
+                    }
+                    else if(args.length == 1)
+                    {
+                        echo = args[0];
+                    }
+                    else
+                    {
+                        echo = "nothing"
+                    }
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'You said: ' + echo,
+                    });
+                    echo = true;
+                break;
             case 'obeyme':
                     logger.info(user + ' used obeyme');
                     // send message to chat
@@ -53,10 +78,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'here are all the current available commands: ' + 
                     "\n !ping: responds Pong!" +
                     "\n !obeyme: the bot will obey" +
+                    "\n !echo <input> : the bot will repeat what it was told to echo" +
                     "\n !koala: give a picture of a koala" +
                     "\n !help: lists all commmands"
-                }); 
-                      
+                });        
             break;                
          }
      }
