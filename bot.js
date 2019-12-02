@@ -107,6 +107,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     "\n !echo <input> : the bot will repeat what it was told to echo" +
                     "\n !koala: give a picture of a koala" +
                     "\n !swaglevl: tells user how much swag they have" +
+                    "\n !GetPizza: gets the user a picture of a pizza" +
                     "\n !help: lists all commmands"
                 });        
             break;              
