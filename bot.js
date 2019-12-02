@@ -34,6 +34,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'pong'
                 });
             break;
+            case 'catfact':
+                //TODO: add catfact API
+            break;
             case 'echo':
                     var echo;
                     if(args.length > 1)
@@ -60,18 +63,41 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 break;
             case 'obeyme':
                     logger.info(user + ' used obeyme');
-                    // send message to chat
                     bot.sendMessage({
                         to: channelID,
                         message: 'fine...grrr ' + user,
                     });
                     break;
             case 'koala':
-                bot.sendMessage({
+                    bot.sendMessage({
                     to: channelID,
                     message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
                 });
             break;
+            case 'GetPizza':
+                    switch(Math.round(Math.random() * 3))
+                    {
+                        case 0:
+                            pizza = 'https://upload.wikimedia.org/wikipedia/commons/b/ba/New_York-Style_Pizza.png';
+                            break;
+                        case 1:
+                            pizza = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Pizza_quattro_formaggi_at_restaurant%2C_Chalk_Farm_Road%2C_London.jpg/440px-Pizza_quattro_formaggi_at_restaurant%2C_Chalk_Farm_Road%2C_London.jpg';
+                            break;
+                        case 2:
+                            pizza = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Greek_pizza_%281%29.jpg/440px-Greek_pizza_%281%29.jpg';
+                            break;
+                    }
+                    bot.sendMessage({
+                        to: channelID,
+                        message: 'Here is a pizza\n' + pizza, 
+                    });
+                break;
+            case 'swaglevel':
+                    bot.sendMessage({
+                        to: channelID,
+                        message: user + ' has ' + Math.round(Math.random() * 100) + " swag", 
+                });
+            break;     
             case 'help':
                 bot.sendMessage({
                     to: channelID,
@@ -80,9 +106,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     "\n !obeyme: the bot will obey" +
                     "\n !echo <input> : the bot will repeat what it was told to echo" +
                     "\n !koala: give a picture of a koala" +
+                    "\n !swaglevl: tells user how much swag they have" +
                     "\n !help: lists all commmands"
                 });        
-            break;                
+            break;              
          }
      }
 })
