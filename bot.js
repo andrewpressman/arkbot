@@ -34,8 +34,52 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'pong'
                 });
             break;
-            case 'catfact':
-                //TODO: add catfact API
+            case '8ball':
+                    const responses = [
+                        "It is certain",
+                        "It is decidedly so",
+                        "Without a doubt",
+                        "Yes – definitely",
+                        "You may rely on it",
+                        "As I see it",
+                        "yes",
+                        "Most Likely",
+                        "Outlook good",
+                        "Yes",
+                        "Signs point to yes"
+                    ];
+
+                    const randomIndex = Math.floor(Math.random() * responses.length);
+
+                    var ball;
+                    if(args.length > 1)
+                    {
+                        ball = args[0];
+                        for(i = 1; i < args.length; i++)
+                        {
+                            ball = ball + " " + args[i];
+                        }
+                        bot.sendMessage({
+                            to: channelID,
+                            message:"8ball says: " + responses[randomIndex] + " to: " + ball,
+                        });
+                    }
+                    else if(args.length == 1)
+                    {
+                        ball = args[0];
+                        bot.sendMessage({
+                            to: channelID,
+                            message:"8ball says: " + responses[randomIndex] + " to: " + ball,
+                        });
+                    }
+                    else
+                    {
+                        bot.sendMessage({
+                            to: channelID,
+                            message:"8ball says: you need to add something after !8ball",
+                        });
+                    }
+                    ball = true;
             break;
             case 'echo':
                     var echo;
@@ -108,6 +152,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     "\n !koala: give a picture of a koala" +
                     "\n !swaglevl: tells user how much swag they have" +
                     "\n !GetPizza: gets the user a picture of a pizza" +
+                    "\n !8ball <input>: Magic 8 ball, ask it a question!" +
                     "\n !help: lists all commmands"
                 });        
             break;              
