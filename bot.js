@@ -35,6 +35,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 });
             break;
             case '8ball':
+                logger.info(user + ' used 8ball');
                     const responses = [
                         "It is certain",
                         "It is decidedly so",
@@ -49,10 +50,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         "Signs point to yes"
                     ];
 
-                    const randomIndex = Math.floor(Math.random() * responses.length);
+                    const randomIndex = Math.round(Math.random() * responses.length);
 
                     var ball;
-                    if(args.length > 1)
+                    var isQuestion = 0;
+                    for(i = 0; i < args.length; i++)
+                    {
+                        if(args[i].indexOf('?') != -1)
+                        {
+                            isQuestion++;
+                        }
+                    }
+                    if(isQuestion > 0) 
+                    {
+                     if(args.length > 1)
                     {
                         ball = args[0];
                         for(i = 1; i < args.length; i++)
@@ -79,6 +90,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                             message:"8ball says: you need to add something after !8ball",
                         });
                     }
+                }
+                else
+                {
+                    bot.sendMessage({
+                        to: channelID,
+                        message:"8ball says: you did not ask a proper question to the 8ball. (hint: use a ?)",
+                    });
+                }
+
                     ball = true;
             break;
             case 'echo':
@@ -118,7 +138,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'This is a koala!\n' + 'https://upload.wikimedia.org/wikipedia/commons/4/49/Koala_climbing_tree.jpg', 
                 });
             break;
-            case 'GetPizza':
+            case 'getpizza':
                     switch(Math.round(Math.random() * 3))
                     {
                         case 0:
@@ -151,7 +171,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     "\n !echo <input> : the bot will repeat what it was told to echo" +
                     "\n !koala: give a picture of a koala" +
                     "\n !swaglevel: tells user how much swag they have" +
-                    "\n !GetPizza: gets the user a picture of a pizza" +
+                    "\n !getpizza: gets the user a picture of a pizza" +
                     "\n !8ball <input>: Magic 8 ball, ask it a question!" +
                     "\n !help: lists all commmands"
                 });        
